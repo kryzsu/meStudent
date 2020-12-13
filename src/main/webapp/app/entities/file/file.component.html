@@ -1,0 +1,102 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="meStudentApp.file.home.title">Files</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-file" [routerLink]="['/file/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span class="hidden-sm-down"  jhiTranslate="meStudentApp.file.home.createLabel">
+            Create a new File
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'meStudentApp.file.home.search' | translate }}">
+
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon icon="search"></fa-icon>
+                    </button>
+
+                    <button class="input-group-append btn btn-danger" (click)="search('')" *ngIf="currentSearch">
+                        <fa-icon icon="trash-alt"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="files?.length === 0">
+        <span jhiTranslate="meStudentApp.file.home.notFound">No files found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="files && files.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="meStudentApp.file.title">Title</span></th>
+                    <th scope="col" ><span jhiTranslate="meStudentApp.file.data">Data</span></th>
+                    <th scope="col" ><span jhiTranslate="meStudentApp.file.taskAttachedTo">Task Attached To</span></th>
+                    <th scope="col" ><span jhiTranslate="meStudentApp.file.courseAttachedTo">Course Attached To</span></th>
+                    <th scope="col" ><span jhiTranslate="meStudentApp.file.commentAttachedTo">Comment Attached To</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let file of files ;trackBy: trackId">
+                    <td><a [routerLink]="['/file', file.id, 'view']">{{ file.id }}</a></td>
+                    <td>{{ file.title }}</td>
+                    <td>
+                        <a *ngIf="file.data" (click)="openFile(file.dataContentType, file.data)" jhiTranslate="entity.action.open">open</a>
+                        <span *ngIf="file.data">{{ file.dataContentType }}, {{ byteSize(file.data) }}</span>
+                    </td>
+                    <td>
+                        <div *ngIf="file.taskAttachedTo">
+                            <a [routerLink]="['/task', file.taskAttachedTo?.id, 'view']" >{{ file.taskAttachedTo?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="file.courseAttachedTo">
+                            <a [routerLink]="['/course', file.courseAttachedTo?.id, 'view']" >{{ file.courseAttachedTo?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="file.commentAttachedTo">
+                            <a [routerLink]="['/comment', file.commentAttachedTo?.id, 'view']" >{{ file.commentAttachedTo?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/file', file.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/file', file.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(file)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

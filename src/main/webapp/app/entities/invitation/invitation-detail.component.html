@@ -1,0 +1,36 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="invitation">
+            <h2><span jhiTranslate="meStudentApp.invitation.detail.title">Invitation</span> {{ invitation.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="meStudentApp.invitation.invitedBy">Invited By</span></dt>
+                <dd>
+                    {{ invitation.invitedBy?.id }}
+                </dd>
+                <dt><span jhiTranslate="meStudentApp.invitation.belongsTo">Belongs To</span></dt>
+                <dd>
+                    <div *ngIf="invitation.belongsTo">
+                        <a [routerLink]="['/course', invitation.belongsTo?.id, 'view']">{{ invitation.belongsTo?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/invitation', invitation.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
