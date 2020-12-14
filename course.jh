@@ -1,0 +1,47 @@
+entity Student {
+	name String required
+}
+
+entity Teacher {
+	name String required
+}
+
+entity Course {
+	name String required
+    code String required unique
+}
+
+entity Task {
+}
+
+entity File {
+	title String required
+    data Blob required
+}
+
+entity Invitation {
+
+}
+
+entity Comment {
+	content String required
+}
+
+relationship ManyToOne {
+ File{taskAttachedTo} to Task
+ File{courseAttachedTo} to Course
+ File{commentAttachedTo} to Comment
+ Invitation{invitedBy} to User
+ Student{assegnedTo} to Course
+ Invitation{belongsTo} to Course
+ Comment{writtenTo} to Course
+}
+
+relationship OneToOne {
+ Student{isa} to User
+ Teacher{isa} to User
+ Teacher{manages} to Course
+}
+
+
+    

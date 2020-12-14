@@ -1,0 +1,40 @@
+{
+  "name": "Student",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "student",
+      "relationshipName": "isa",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "course",
+      "otherEntityRelationshipName": "student",
+      "relationshipName": "assegnedTo",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201213150248",
+  "entityTableName": "student",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Task",
+  "fields": [],
+  "relationships": [],
+  "changelogDate": "20201213150548",
+  "entityTableName": "task",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

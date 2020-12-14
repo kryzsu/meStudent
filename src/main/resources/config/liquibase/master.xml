@@ -14,7 +14,19 @@
     <property name="uuidType" value="varchar(36)" dbms="h2, mysql, mariadb"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201213150248_added_entity_Student.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201213150348_added_entity_Teacher.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201213150448_added_entity_Course.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201213150548_added_entity_Task.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201213150648_added_entity_File.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201213150748_added_entity_Invitation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201213150848_added_entity_Comment.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20201213150248_added_entity_constraints_Student.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201213150348_added_entity_constraints_Teacher.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201213150648_added_entity_constraints_File.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201213150748_added_entity_constraints_Invitation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201213150848_added_entity_constraints_Comment.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>
